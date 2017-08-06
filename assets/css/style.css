@@ -1,0 +1,36 @@
+body {
+	font-family: 'Saira', sans-serif;
+	background: url("../images/clone-background.jpg") no-repeat center center fixed;
+	background-size: cover;
+}
+
+header {
+	color: #C0C0C0;
+	background: #000;
+}
+
+.char-col {
+	margin-top: 40px;
+}
+
+
+
+.char-img-div {
+	height: 16vh;
+	border: solid #C0C0C0 1.5px;
+	border-radius: 5%;
+	background: rgba(39,45,99,0.5);
+}
+
+.char-img {
+	margin: auto;
+	border-radius: 5%;
+}
+
+#player-char-div {
+	display: none;
+}
+
+#enemy-div {
+	display: none;
+}
