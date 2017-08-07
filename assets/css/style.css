@@ -34,3 +34,7 @@ header {
 #enemy-div {
 	display: none;
 }
+
+#defender-div {
+	display: none;
+}
