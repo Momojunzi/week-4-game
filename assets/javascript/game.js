@@ -1,5 +1,30 @@
 $(document).ready(function() {
-	var characterArr = ["Luke Skywalker", "ObiWan Kenobi", "Darth Vader", "Darth Sidious", "Yoda", "Count Dooku",];
+	var characterArr = [
+		{
+			name: "Luke Skywalker", 
+			hp:120,
+			attack: 5,
+			defend: 20
+		}, 
+		{
+			name: "ObiWan Kenobi", 
+			hp: 140,
+			attack: 5,
+			defend: 20
+		}, 
+		{
+			name: "Darth Vader", 
+			hp: 180,
+			attack: 5,
+			defend: 20
+		}, 
+		{
+			name:"Darth Sidious", 
+			hp: 200,
+			attack: 5,
+			defend: 20
+		}];
+
 	var playerChosen = false;
 	var defenderChosen = false;
 	var playerChar;
@@ -13,7 +38,11 @@ $(document).ready(function() {
 	$('.char-img-div').on('click', function() {
 
 		if(playerChosen === false) {
-			var charIndex = characterArr.indexOf($(this).attr('id').split('-').join(' '));
+			for(var i=0; i<characterArr.length; i++) {
+				if(characterArr[i].name === $(this).attr('id').split('-').join(' ')){
+					var charIndex = i;
+				}
+			}
 			playerChar = enemyArr.splice(charIndex, 1);
 			arrToDiv(playerChar, "#player-char-div", "player");
 			arrToDiv(enemyArr, "#enemy-div", "enemy");
@@ -26,7 +55,11 @@ $(document).ready(function() {
 		$('.enemy').on('click', function() {
 		
 			if(defenderChosen === false) {
-				var charIndex = enemyArr.indexOf($(this).attr('id').split('-').join(' '));
+				for(var i=0; i<enemyArr.length; i++) {
+				if(enemyArr[i].name === $(this).attr('id').split('-').join(' ')){
+					var charIndex = i;
+				}
+			}
 				defender = enemyArr.splice(charIndex, 1);
 				$('#enemy-div').empty();
 				arrToDiv(defender, '#defender-div', 'defender');
@@ -42,10 +75,18 @@ $(document).ready(function() {
 	function arrToDiv(arr, parent, team) {
 
 		for(var i=0; i<arr.length; i++) {
-			var charDiv = $('<div class="char-img-div col-xs-1 ' + team + '" id="' + arr[i].split(' ').join('-') + '">');
-			charDiv.data('hp', Math.floor((Math.random() * 100) + 100));
-			var charImage = $('<img>').attr({src: './assets/images/' + arr[i] + '.jpg', class: 'char-img img-responsive'});
+			var charhp = arr[i].hp;
+			var charAttack = arr[i].attack;
+			var charDefend = arr[i].defend;
+			var charDiv = $('<div class="char-img-div col-xs-1 ' + team + '" id="' + arr[i].name.split(' ').join('-') + '">');
+			charDiv.data({hp:charhp, attack: charAttack, defend: charDefend});
+			charNameSplit = arr[i].name.split(' ');
+			var charName = $('<div class="char-name"><p>' + charNameSplit[0] + '</p><p>' + charNameSplit[1] + '</p></div>');
+			var hpdiv = $('<div class="char-hp">' + charhp + ' hp</div>');
+			var charImage = $('<img>').attr({src: './assets/images/' + arr[i].name + '.jpg', class: 'char-img img-responsive'});
+			charDiv.append(charName);
 			charDiv.append(charImage);
+			charDiv.append(hpdiv);
 			$(parent).append(charDiv);
 		}
 	}
