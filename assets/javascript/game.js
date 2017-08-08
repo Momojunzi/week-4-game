@@ -47,7 +47,7 @@ $(document).ready(function() {
 			arrToDiv(playerChar, "#player-char-div", "player");
 			arrToDiv(enemyArr, "#enemy-div", "enemy");
 			$('#char-start-div').css({display: 'none'});
-			$('#player-char-div, #enemy-div').css({display: 'block'});
+			$('#player-char-div, #enemy-div, #display-div').css({display: 'block'});
 			playerhp = $('.player').data('hp');
 			playerChosen = true;
 		} 
@@ -61,7 +61,8 @@ $(document).ready(function() {
 				}
 			}
 				defender = enemyArr.splice(charIndex, 1);
-				$('#enemy-div').empty();
+				$('#enemy-div').empty().append('<h3>Enemies Available to Fight</h3>');
+
 				arrToDiv(defender, '#defender-div', 'defender');
 				arrToDiv(enemyArr, "#enemy-div", 'enemy');
 				$('#defender-div').css({display: 'block'});
@@ -78,7 +79,7 @@ $(document).ready(function() {
 			var charhp = arr[i].hp;
 			var charAttack = arr[i].attack;
 			var charDefend = arr[i].defend;
-			var charDiv = $('<div class="char-img-div col-xs-1 ' + team + '" id="' + arr[i].name.split(' ').join('-') + '">');
+			var charDiv = $('<div class="char-img-div col-xs-2 ' + team + '" id="' + arr[i].name.split(' ').join('-') + '">');
 			charDiv.data({hp:charhp, attack: charAttack, defend: charDefend});
 			charNameSplit = arr[i].name.split(' ');
 			var charName = $('<div class="char-name"><p>' + charNameSplit[0] + '</p><p>' + charNameSplit[1] + '</p></div>');
