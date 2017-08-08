@@ -31,7 +31,9 @@ $(document).ready(function() {
 	var defender;
 	var enemyArr = characterArr;
 	var playerhp;
-	var defenderhp; 
+	var playerAttack;
+	var defenderhp;
+	var defenderAttack; 
 
 	arrToDiv(characterArr, "#char-start-div");
 	
@@ -49,6 +51,7 @@ $(document).ready(function() {
 			$('#char-start-div').css({display: 'none'});
 			$('#player-char-div, #enemy-div, #display-div').css({display: 'block'});
 			playerhp = $('.player').data('hp');
+			playerAttack = $('.player').data('attack');
 			playerChosen = true;
 		} 
 
@@ -67,9 +70,23 @@ $(document).ready(function() {
 				arrToDiv(enemyArr, "#enemy-div", 'enemy');
 				$('#defender-div').css({display: 'block'});
 				defenderhp = $('.defender').data('hp');
+				defenderAttack = $('.defender').data('defend');
 				defenderChosen = true;
 				console.log(playerhp, defenderhp);
 			}
+
+			$('#attack-btn').on('click', function() {
+				if(defenderChosen === true) {
+					defenderhp -= playerAttack;
+					$('#display-div').append('<h4>You attacked ' + defender[0].name + ' for ' + playerAttack + ' damage</h4>');
+					playerAttack += 20;
+					setTimeout(function() {
+						playerhp -= defenderAttack;
+						$('#display-div').append('<h4>' + defender[0].name + ' attacked you for ' + defenderAttack + ' damage</h4>');
+					}, 2000);
+					console.log(defenderhp);
+				}
+			});
 		});
 	});
 
