@@ -35,13 +35,17 @@ $(document).ready(function() {
 	var defenderhp;
 	var defenderAttack; 
 
+	// take array of characters and turn it into a div of images
 	arrToDiv(characterArr, "#char-start-div");
 	
+	// click on image and choose a character to be player character
 	$('.char-img-div').on('click', function() {
 
 		if(playerChosen === false) {
 			for(var i=0; i<characterArr.length; i++) {
-				if(characterArr[i].name === $(this).attr('id').split('-').join(' ')){
+				var character = characterArr[i];
+
+				if(character.name === $(this).attr('id').split('-').join(' ')){
 					var charIndex = i;
 				}
 			}
@@ -55,6 +59,7 @@ $(document).ready(function() {
 			playerChosen = true;
 		} 
 
+		// click on remaining enemies and choose the defender
 		$('.enemy').on('click', function() {
 		
 			if(defenderChosen === false) {
@@ -75,6 +80,7 @@ $(document).ready(function() {
 				console.log(playerhp, defenderhp);
 			}
 
+			//click attack button and do some calculations to see if character wins or defender wins	
 			$('#attack-btn').on('click', function() {
 				if(defenderChosen === true) {
 					defenderhp -= playerAttack;
@@ -90,6 +96,7 @@ $(document).ready(function() {
 		});
 	});
 
+	//function to create a div of images based on an array and append it to a dom element
 	function arrToDiv(arr, parent, team) {
 
 		for(var i=0; i<arr.length; i++) {
