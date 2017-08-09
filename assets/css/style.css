@@ -2,7 +2,6 @@ body {
 	font-family: 'Saira', sans-serif;
 	background: url("../images/clone-background.jpg") no-repeat center center fixed;
 	background-size: cover;
-	color: #C0C0C0;
 }
 
 header {
@@ -54,11 +53,3 @@ header {
 #defender-div {
 	display: none;
 }
-
-.attack-btn {
-	margin-top: 60px;
-	background: rgba(39,45,99,1.0);
-	border: solid red 1px;
-	color: #C0C0C0;
-}
-

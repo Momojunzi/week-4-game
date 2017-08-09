@@ -31,9 +31,7 @@ $(document).ready(function() {
 	var defender;
 	var enemyArr = characterArr;
 	var playerhp;
-	var playerAttack;
-	var defenderhp;
-	var defenderAttack; 
+	var defenderhp; 
 
 	// take array of characters and turn it into a div of images
 	arrToDiv(characterArr, "#char-start-div");
@@ -55,7 +53,6 @@ $(document).ready(function() {
 			$('#char-start-div').css({display: 'none'});
 			$('#player-char-div, #enemy-div, #display-div').css({display: 'block'});
 			playerhp = $('.player').data('hp');
-			playerAttack = $('.player').data('attack');
 			playerChosen = true;
 		} 
 
@@ -75,10 +72,10 @@ $(document).ready(function() {
 				arrToDiv(enemyArr, "#enemy-div", 'enemy');
 				$('#defender-div').css({display: 'block'});
 				defenderhp = $('.defender').data('hp');
-				defenderAttack = $('.defender').data('defend');
 				defenderChosen = true;
 				console.log(playerhp, defenderhp);
 			}
+<<<<<<< HEAD
 
 			//click attack button and do some calculations to see if character wins or defender wins	
 			$('#attack-btn').on('click', function() {
@@ -93,6 +90,8 @@ $(document).ready(function() {
 					console.log(defenderhp);
 				}
 			});
+=======
+>>>>>>> parent of 964fb2b... attack button added, pressing button attacks defender makes calculation then defender attacks back
 		});
 	});
 
