@@ -32,6 +32,7 @@ header {
 	color: #C0C0C0;
 	line-height: 0.5;
 	padding-top: 5px;
+	
 }
 
 .char-img {
@@ -61,4 +62,11 @@ header {
 
 .button-div {
 	margin-bottom: 20px;
+}
+
+#display-readout {
+	height: 60%;
+}
+.reset-div {
+	margin-top: 10px
 }
