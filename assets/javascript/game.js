@@ -2,27 +2,27 @@ $(document).ready(function() {
 	var characterArr = [
 		{
 			name: "Luke Skywalker", 
-			hp:120,
-			attack: 5,
-			defend: 20
+			hp:100,
+			attack: 7,
+			defend: 5
 		}, 
 		{
 			name: "ObiWan Kenobi", 
-			hp: 140,
-			attack: 5,
-			defend: 20
+			hp: 120,
+			attack: 7,
+			defend: 8
 		}, 
 		{
 			name: "Darth Vader", 
-			hp: 180,
-			attack: 5,
-			defend: 20
+			hp: 140,
+			attack: 7,
+			defend: 25
 		}, 
 		{
 			name:"Darth Sidious", 
-			hp: 200,
-			attack: 5,
-			defend: 20
+			hp: 130,
+			attack: 7,
+			defend: 15
 		}];
 
 	var playerChosen = false;
@@ -35,6 +35,10 @@ $(document).ready(function() {
 	var playerAttack;
 	var defenderAttack; 
 	var enemyCounter = 3;
+	var startAudio = new Audio('./assets/sounds/centuryfox.mp3');
+
+	//play opening theme
+	startAudio.play();
 	// take array of characters and turn it into a div of images
 	arrToDiv(characterArr, "#char-start-div");
 	
@@ -71,21 +75,28 @@ $(document).ready(function() {
 					$('#display-readout').empty();
 					$('#display-readout').append('<h4>You attacked ' + defender[0].name + ' for ' + playerAttack + ' damage</h4>');
 					$('#defender0').html(defenderhp + 'hp')
-					playerAttack += 20;
+					playerAttack += 7;
 					if(defenderhp > 0) {
 						setTimeout(function() {
 							$('#audio-2')[0].play();
 							playerhp -= defenderAttack;
 							$('#display-readout').append('<h4>' + defender[0].name + ' attacked you for ' + defenderAttack + ' damage</h4>');
 							$('#player0').html(playerhp + 'hp');
+							if(playerhp <= 0) {
+								$('#display-readout').empty().append('<h3>You ran out of health!</h3><h4>Game Over...</h4><h3>try again</h3>');
+								$('#player0').html(playerhp + 'hp');
+								var lossAudio = new Audio('./assets/sounds/failed.mp3');
+								setTimeout(function() {
+									lossAudio.play();
+								}, 3000);
+							} 
 						}, 2000);
 					}
 					
-					if(playerhp <= 0 && defenderhp > 0) {
+					/*if(playerhp <= 0 && defenderhp > 0) {
 						$('#display-readout').empty().append('<h3>You ran out of health!</h3><h4>Game Over...</h4><h3>try again</h3>');
 						$('#player0').html(player0 + 'hp');
-						reset();
-					} 
+					} */
 
 					if(defenderhp <= 0) {
 						enemyCounter -= 1;
@@ -96,7 +107,11 @@ $(document).ready(function() {
 							chooseDefender($(this));
 						});
 						if(enemyCounter === 0) {
-							$('#choose').html('You Defeated all of the Bad Guys. You Win!')
+							$('#choose').html('You Defeated all of the Bad Guys. You Win!');
+							var winAudio = new Audio('./assets/sounds/mostimprs.wav');
+							setTimeout(function() {
+								winAudio.play();
+							}, 3000);
 						}
 					}
 				}
@@ -128,6 +143,8 @@ $(document).ready(function() {
 			$(parent).append(charDiv);
 		}
 	}
+
+	// function to choose the defender character and redraw the  defender and enemy arrays
 	var chooseDefender = function(myThis) {
 		if(defenderChosen === false) {
 			for(var i=0; i<enemyArr.length; i++) {

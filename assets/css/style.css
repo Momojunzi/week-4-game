@@ -1,3 +1,6 @@
+*{ 
+	box-sizing: border-box;
+ }
 body {
 	font-family: 'Saira', sans-serif;
 	background: url("../images/clone-background.jpg") no-repeat center center fixed;
@@ -12,7 +15,7 @@ header {
 
 .char-col {
 	color: #C0C0C0;
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 #display-div {
@@ -25,7 +28,7 @@ header {
 }
 
 .char-img-div {
-	height: 16vh;
+	height: 18vh;
 	border: solid #C0C0C0 1.5px;
 	border-radius: 5%;
 	background: rgba(39,45,99,0.5);
@@ -42,6 +45,10 @@ header {
 	margin-right: auto;
 	margin-bottom: 10px;
 	border-radius: 5%;
+}
+
+.char-hp {
+	margin-bottom: 5px;
 }
 
 #player-char-div {
