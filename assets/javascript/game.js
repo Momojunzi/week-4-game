@@ -74,7 +74,7 @@ $(document).ready(function() {
 					playerAttack += 20;
 					if(defenderhp > 0) {
 						setTimeout(function() {
-							//$('#audio-2')[0].play();
+							$('#audio-2')[0].play();
 							playerhp -= defenderAttack;
 							$('#display-readout').append('<h4>' + defender[0].name + ' attacked you for ' + defenderAttack + ' damage</h4>');
 							$('#player0').html(playerhp + 'hp');
