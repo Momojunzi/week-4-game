@@ -70,7 +70,8 @@ $(document).ready(function() {
 			//click attack button and do some calculations to see if character wins or defender wins	
 			$('#attack-btn').on('click', function() {
 				if(defenderChosen === true) {
-					$('#audio-1')[0].play();
+					var saber1 = new Audio('./assets/sounds/2 Clash Ck.wav');
+					saber1.play();
 					defenderhp -= playerAttack;
 					$('#display-readout').empty();
 					$('#display-readout').append('<h4>You attacked ' + defender[0].name + ' for ' + playerAttack + ' damage</h4>');
@@ -78,7 +79,8 @@ $(document).ready(function() {
 					playerAttack += 7;
 					if(defenderhp > 0) {
 						setTimeout(function() {
-							$('#audio-2')[0].play();
+							var saber2 = new Audio('./assets/sounds/3 Clash Ck.wav');
+							saber2.play();
 							playerhp -= defenderAttack;
 							$('#display-readout').append('<h4>' + defender[0].name + ' attacked you for ' + defenderAttack + ' damage</h4>');
 							$('#player0').html(playerhp + 'hp');
